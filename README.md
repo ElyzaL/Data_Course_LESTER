@@ -43,4 +43,6 @@ this is the second line.
  __Alternitive Bold Text__
 
  this is **Bold** in the middle of a line hehe
+
+ and some *italic* in the middle
  
