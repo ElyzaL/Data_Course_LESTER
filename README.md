@@ -51,4 +51,6 @@ this is the second line.
  this is my 26th commit 
 
  can you tell this bolded text ***is important*** 
+
+ this is another way of making the text __*Bold*__
  
