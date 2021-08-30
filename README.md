@@ -4,7 +4,7 @@
 edit 1
 
 ## commiting a change
-- git status
+- `git status`
 - git add .
 - git commit -m "text" 
 - git push 
