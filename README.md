@@ -14,3 +14,8 @@ this is a paragraph
 this is **bold text**
 
 this is *italic* 
+
+## list
+1. first line
+2. second line 
+3. third line
