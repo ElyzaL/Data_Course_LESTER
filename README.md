@@ -45,4 +45,6 @@ this is the second line.
  this is **Bold** in the middle of a line hehe
 
  and some *italic* in the middle
+
+ alternitive _italic_ text
  
