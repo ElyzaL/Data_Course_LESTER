@@ -32,3 +32,7 @@ this is *italic*
 
 Alternitive Heading #1
 =======================
+
+Alternative heading #2
+-----------------------
+
