@@ -30,3 +30,5 @@ this is *italic*
 ##### title #5
 ###### title #6
 
+Alternitive Heading #1
+=======================
