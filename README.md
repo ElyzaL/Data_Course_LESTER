@@ -12,3 +12,5 @@ edit 1
 this is a paragraph 
 
 this is **bold text**
+
+this is *italic* 
