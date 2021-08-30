@@ -24,7 +24,7 @@ this is *italic*
 - 1998\. this is a year
 
 # title #1
-## medium title #2
+## title #2
 ### smaller title #3
 #### title #4
 
