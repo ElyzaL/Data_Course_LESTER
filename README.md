@@ -53,4 +53,6 @@ this is the second line.
  can you tell this bolded text ***is important*** 
 
  this is another way of making the text __*Bold*__
+
+ this is **_Bold_** too
  
