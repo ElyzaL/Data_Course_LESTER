@@ -25,6 +25,6 @@ this is *italic*
 
 # title #1
 ## title #2
-### smaller title #3
+### title #3
 #### title #4
 
