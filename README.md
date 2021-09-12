@@ -58,3 +58,40 @@ this is the second line.
 
  30th commit bc i have to get to class now
  
+
+
+
+
+
+
+
+
+
+ csv_files= list.files(path = "Data", pattern = ".csv$")
+length(csv_files)
+df= read.csv("Data/wingspan_vs_mass.csv")
+head(df,5)
+b_files <- list.files(path = "Data", pattern = "^b",recursive = TRUE)
+for (file_name in b_files) {
+  b_data<- read.csv(paste0("Data/",file_name))
+  print(head(b_data,1))
+}
+for (file_name in csv_files) {
+  b_data<- read.csv(paste0("Data/",file_name))
+  print(head(b_data,1))
+}
+
+csv_files= list.files(path = "Data", pattern = ".csv$")
+length(csv_files)
+df= read.csv("Data/wingspan_vs_mass.csv")
+head(df,5)
+b_files <- list.files(path = "Data", pattern = "^b",recursive = TRUE)
+for (file_name in b_files) {
+  b_data<- read.csv(paste0("Data/",file_name))
+  print(head(b_data,1))
+}
+for (file_name in csv_files) {
+  b_data<- read.csv(paste0("Data/",file_name))
+  print(head(b_data,1))
+  
+  
