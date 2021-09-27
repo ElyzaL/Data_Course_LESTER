@@ -1,0 +1,18 @@
+Tasks:
+1. Create a plaintext document named “final_project_idea.txt”
+2. In it, describe your idea for a data analysis final project
+I could do a data analysis for types and factors that affect growth in Orchidaceae. This would collect different variables, such as environments, genus, medium, light exposure, watering frequency, fertilizer, ect. Based off the data we would be able to interpret optimal care for types of orchids. 
+3. Also, Describe the sort of data you will use, potential sources, and what the data might look like
+We would use observational data taken from professional growers all around the word. Orcid.org, aos.org, and humboldtorchids.org have free data available for researchers 
+4. (If you already have data, skip this task) Create fake data that simulates what your final project data set might look like. Preferably a csv file
+Called MOCK_DATA_3
+5. Generate a plot (using ggplot) using either your real or fake data that shows at least one expected result
+
+CODE:
+install.packages("ggplot2")
+library(ggplot2)
+df <- read.csv("~/Data_Course/MOCK_DATA-3.csv")
+ggplot(df, aes(medium)) + geom_density()
+Fake data density plot showing - the density of different types of plant species of orchidaceae and their growth rates with different types of medium. 
+
+
