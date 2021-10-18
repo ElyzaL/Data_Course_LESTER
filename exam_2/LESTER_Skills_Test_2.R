@@ -58,7 +58,7 @@ long_dat <- dat %>%
 p <- long_dat %>% 
  ggplot(aes(x=year, y=MortalityRate, color = continent)) +
   scale_x_discrete(breaks= seq(1960, 2000, by = 20)) +
-  geom_point()
+  geom_line()
 p
 
 #IV.     Re-create the graph shown in fig3.png
@@ -66,14 +66,17 @@ p
 #time for each continent (i.e., all countries in each continent, 
 #yearly average), this is NOT a geom_smooth() Export it to your 
 #Exam_2 folder as LASTNAME_Fig_3.jpg (note, that's a jpg, not a png)
+ mean_mortality_rate <-  mean(long_dat$MortalityRate, na.rm = 0)
 
-as.numeric(long_dat$MortalityRate)
-long_dat[is.na(long_dat$MortalityRate)]=0
-mean(dat$MortalityRate)
-
-
-
-
+ p3 <- long_dat %>% 
+   ggplot(aes(x= year, y= mean_mortality_rate, color = continent)) +
+   scale_x_discrete(breaks= seq(1960, 2000, by = 20)) +
+   geom_line()+
+   geom_smooth()+
+   labs(y= "Mean Mortality Rate (deaths per 1000 live births)", x= "Year") +
+   theme_minimal(method= lm)+
+   geom_path(stat = mean_mortality_rate)
+p3
 
 #V.      Re-create the graph shown in fig4.png
 #Note: The y-axis shows proportions, not raw numbers
@@ -81,4 +84,11 @@ mean(dat$MortalityRate)
 #Export it to your Exam_2 folder as LASTNAME_Fig_3.jpg 
 #(note, that's a jpg, not a png)
 
-
+long_dat %>% 
+   ggplot(aes(x= year, y= MortalityRate)) +
+   geom_point(color= "blue")+
+   geom_smooth(se = FALSE) +
+   facet_wrap(~ region) +
+   scale_x_discrete(breaks= seq(1960, 2000, by = 20)) +
+   labs(x= "year", y= "Mortality Rate") +
+   theme_minimal()
