@@ -1,20 +1,27 @@
 library(tidyverse)
+library(janitor)
 dat <- read_csv("~/Data_Course/Data/BioLog_Plate_Data.csv")
 dat
-
+ names(dat) <- make_clean_names(names(dat))
 
 
 #clean 
 dat <- dat %>% 
-  pivot_longer(cols = starts_with("hr_"), 
-               names_to = "time", 
-               values_to = "absorbance", 
-               names_prefix = "hr_") %>% 
+  pivot_longer(dat, cols = starts_with("hr_"),
+               names_to =  "time", 
+               names_prefix = "hr_", 
+               values_to = "absorbance") %>% 
   mutate(time= as.numeric(time)) %>% 
   mutate(type= case_when('Sample_ID' == "CLear_Creek" ~ "water",
                          'Sample_ID' == "Waste_Water" ~ "water",
                          TRUE ~ "soil"))
 
+#we did this part in class
+dat %>% 
+  filter(substrate == "Itaconic Acid") %>% 
+  group_by(time, sample_id, dilution) %>% 
+  summarise(avg_for_all_dilutions = mean(absorbance),
+            N=n())
 
 
 #graph 1
@@ -43,3 +50,38 @@ p <- df %>%
   facet_wrap(~dilution)
 
 p+ transition_reveal(time)
+
+
+
+
+
+# model tween 80 ####
+ 
+
+dat %>% 
+  filter(Dilution == 0.1) %>% 
+  filter(Substrate == "Tween 80") %>% 
+#sqrt makes the bell curve
+  ggplot(aes(x= sqrt(absorbance))) +
+  geom_density()
+
+#tells us about the graph
+
+dat %>% 
+  filter(Dilution == 0.1) %>% 
+  filter(Substrate == "Tween 80") %>% 
+glm(data =.,
+    formula = absorbance ~ type * time) %>% 
+  summary()
+
+#plotly
+library(plotly)
+
+p <- dat %>% 
+  ggplot(aes(x= factor(time), y= absorbance, fill= sample_id)) +
+  geom_boxplot()
+p
+ 
+
+
+
