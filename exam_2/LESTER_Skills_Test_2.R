@@ -13,10 +13,10 @@ library(gridExtra)
 #values to plain numeric, add options(scipen = 999) to your script
 df <- read_csv("~/Desktop/BIOL3100_Exams/Exam_2/landdata-states.csv")
 options(scipen = 999)
-p <- ggplot(df, aes(x= Year, y= Land.Value, color = region)) +
+p1 <- ggplot(df, aes(x= Year, y= Land.Value, color = region)) +
   geom_smooth(method = "loess", level = 0.8,)
 #need a geom_curve here?
-p +labs(y= "Land Value (USD)", x= "Year", (scipen = 999))
+p1 +labs(y= "Land Value (USD)", x= "Year", (scipen = 999))
 
 #II.     What is "NA Region???"
 #Write some code to show which state(s) are found 
@@ -55,11 +55,11 @@ long_dat <- dat %>%
 #Export it to your Exam_2 folder as LASTNAME_Fig_2.jpg 
 #(note, that's a jpg, not a png)
 
-p <- long_dat %>% 
+p2 <- long_dat %>% 
  ggplot(aes(x=year, y=MortalityRate, color = continent)) +
   scale_x_discrete(breaks= seq(1960, 2000, by = 20)) +
   geom_line()
-p
+p2
 
 #IV.     Re-create the graph shown in fig3.png
 #Note: This is a line graph of average mortality rate over
@@ -69,13 +69,14 @@ p
  mean_mortality_rate <-  mean(long_dat$MortalityRate, na.rm = 0)
 
  p3 <- long_dat %>% 
+   group_by(year, MortalityRate) %>% 
+   summarise(mean_mortality_rate =mean(MortalityRate), year) %>% 
    ggplot(aes(x= year, y= mean_mortality_rate, color = continent)) +
    scale_x_discrete(breaks= seq(1960, 2000, by = 20)) +
    geom_line()+
-   geom_smooth()+
+   geom_smooth(method= lm)+
    labs(y= "Mean Mortality Rate (deaths per 1000 live births)", x= "Year") +
-   theme_minimal(method= lm)+
-   geom_path(stat = mean_mortality_rate)
+   theme_minimal()
 p3
 
 #V.      Re-create the graph shown in fig4.png
@@ -84,7 +85,7 @@ p3
 #Export it to your Exam_2 folder as LASTNAME_Fig_3.jpg 
 #(note, that's a jpg, not a png)
 
-long_dat %>% 
+p4 <- long_dat %>% 
    ggplot(aes(x= year, y= MortalityRate)) +
    geom_point(color= "blue")+
    geom_smooth(se = FALSE) +
@@ -92,3 +93,4 @@ long_dat %>%
    scale_x_discrete(breaks= seq(1960, 2000, by = 20)) +
    labs(x= "year", y= "Mortality Rate") +
    theme_minimal()
+p4
