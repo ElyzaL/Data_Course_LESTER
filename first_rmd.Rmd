@@ -1,0 +1,48 @@
+---
+title: "My first RMD"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Anything i type outside of the code chunk is just text in your 
+report.
+
+```{r packages, echo=FALSE, warning=FALSE, message=FALSE }
+library(tidyverse)
+library(modelr)
+library(easystats)
+library(rosetta)
+library(systemfonts)
+library(kableExtra)
+```
+### lets look at mpg
+
+## heres a plot of city miles per gallon as a funtion of liters of 
+displacement
+
+```{r, echo=FALSE, message=FALSE}
+data("mtcars")
+mgp %>% 
+  ggplot(aes(x=displ, y=cty )) +
+  geom_smooth()
+```
+
+Explore the mpg dataset a bit:
+
+```{r, echo=FALSE}
+mpg %>% glimpse
+print("The first 10 rows...")
+firstten <- mpg %>% head(10)
+kable(firstten)
+
+kableExtra::kable(firstten)
+
+
+
+
+```
+
+
