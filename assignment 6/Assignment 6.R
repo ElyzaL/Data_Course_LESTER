@@ -1,15 +1,16 @@
 library(tidyverse)
 library(janitor)
-dat <- read_csv("~/Data_Course/Data/BioLog_Plate_Data.csv")
+
+dat <- read_csv("~/Desktop/Data_Course_LESTER/assignment 6/BioLog_Plate_Data.csv")
 dat
  names(dat) <- make_clean_names(names(dat))
 
 
 #clean 
 dat <- dat %>% 
-  pivot_longer(dat, cols = starts_with("hr_"),
-               names_to =  "time", 
-               names_prefix = "hr_", 
+  pivot_longer(dat, cols = starts_with("Hr_"),
+               names_to = "Time", 
+               names_prefix = "Hr_", 
                values_to = "absorbance") %>% 
   mutate(time= as.numeric(time)) %>% 
   mutate(type= case_when('Sample_ID' == "CLear_Creek" ~ "water",
